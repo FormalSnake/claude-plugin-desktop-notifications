@@ -1,0 +1,12 @@
+{
+  "name": "tmux-agent-notifications",
+  "version": "1.0.0",
+  "description": "Per-project tmux status bar notifications for Claude Code agents. Shows which agents need attention without leaving your terminal.",
+  "author": {
+    "name": "kaiiserni",
+    "url": "https://github.com/kaiiserni"
+  },
+  "repository": "https://github.com/kaiiserni/claude-plugin-tmux-notifications",
+  "license": "MIT",
+  "keywords": ["tmux", "notifications", "multi-agent", "status-bar"]
+}
