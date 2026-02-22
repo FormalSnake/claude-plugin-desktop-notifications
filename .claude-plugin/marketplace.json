@@ -1,19 +1,19 @@
 {
-  "name": "claude-plugin-tmux-notifications",
-  "description": "Per-project tmux status bar notifications for Claude Code agents",
+  "name": "claude-plugin-desktop-notifications",
+  "description": "Cross-platform desktop notifications for Claude Code agents",
   "owner": {
-    "name": "kaiiserni",
-    "url": "https://github.com/kaiiserni"
+    "name": "FormalSnake",
+    "url": "https://github.com/FormalSnake"
   },
   "plugins": [
     {
-      "name": "tmux-agent-notifications",
-      "description": "Per-project tmux status bar notifications for Claude Code agents. Shows which agents need attention without leaving your terminal.",
-      "source": "./plugins/tmux-agent-notifications",
+      "name": "desktop-notifications",
+      "description": "Cross-platform desktop notifications for Claude Code agents. Get notified when agents finish or need attention on macOS, Linux, and Windows.",
+      "source": "./plugins/desktop-notifications",
       "version": "1.0.0",
       "category": "productivity",
-      "tags": ["tmux", "notifications", "multi-agent"],
-      "homepage": "https://github.com/kaiiserni/tmux-agent-notifications"
+      "tags": ["notifications", "desktop", "macos", "linux", "windows"],
+      "homepage": "https://github.com/FormalSnake/claude-plugin-desktop-notifications"
     }
   ]
 }

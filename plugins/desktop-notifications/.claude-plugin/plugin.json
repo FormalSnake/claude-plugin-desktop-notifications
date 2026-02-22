@@ -1,0 +1,11 @@
+{
+  "name": "desktop-notifications",
+  "version": "1.0.0",
+  "description": "Cross-platform desktop notifications for Claude Code agents. Get notified when agents finish or need attention on macOS, Linux, and Windows.",
+  "author": {
+    "name": "FormalSnake",
+    "url": "https://github.com/FormalSnake"
+  },
+  "homepage": "https://github.com/FormalSnake/claude-plugin-desktop-notifications",
+  "license": "MIT"
+}

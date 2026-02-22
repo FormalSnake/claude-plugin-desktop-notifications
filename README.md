@@ -1,67 +1,71 @@
-# tmux-agent-notifications (Claude Code Plugin)
+# desktop-notifications (Claude Code Plugin)
 
-Per-project tmux status bar notifications for Claude Code agents. Each agent gets its own notification that only disappears when you focus that specific pane.
+Cross-platform desktop notifications for Claude Code agents. Get notified when agents finish or need attention — on macOS, Linux, and Windows.
 
 ## What This Plugin Does
 
 This Claude Code plugin automatically registers hooks for:
-- **Stop** - Notifies when an agent finishes
-- **Notification** - Shows agent messages that need attention
-- **UserPromptSubmit** - Clears notifications when you interact with an agent
+- **Stop** — Notifies when an agent finishes
+- **Notification** — Shows agent messages that need attention
 
 No manual `settings.json` editing required.
 
 ## Requirements
 
-- tmux 3.2+
-- [tmux-agent-notifications](https://github.com/kaiiserni/tmux-agent-notifications) TPM plugin (for status bar display)
+| Platform | Requirement |
+|----------|-------------|
+| macOS | [`terminal-notifier`](https://github.com/julienXX/terminal-notifier) (`brew install terminal-notifier`) |
+| Linux | `notify-send` (usually pre-installed via libnotify) |
+| Windows/WSL | PowerShell (built-in on Windows 10+) |
+
+### macOS: Why `terminal-notifier`?
+
+`terminal-notifier` appears as its own app in **System Settings > Notifications**, which allows you to set the notification style to **Alerts** (persistent) instead of Banners. This means notifications stay visible until you dismiss them.
+
+To configure:
+1. Install: `brew install terminal-notifier`
+2. Trigger a test notification (see below) so the app registers
+3. Go to **System Settings > Notifications > terminal-notifier**
+4. Set alert style to **Alerts**
 
 ## Installation
 
 ```bash
 # Add the marketplace
-claude plugin marketplace add kaiiserni/claude-plugin-tmux-notifications
+claude plugin marketplace add FormalSnake/claude-plugin-desktop-notifications
 
 # Install the plugin
-claude plugin install tmux-agent-notifications@claude-plugin-tmux-notifications
+claude plugin install desktop-notifications@claude-plugin-desktop-notifications
 ```
-
-Then install the companion tmux plugin for status bar display. Add to `~/.tmux.conf`:
-
-```tmux
-set -g @plugin 'kaiiserni/tmux-agent-notifications'
-```
-
-Reload tmux: `prefix + I`
 
 > Restart Claude Code after installing for hooks to activate.
 
-## How It Works
+## Testing
 
-```
-Claude Code hooks (this plugin)     tmux plugin
-         |                              |
-    Stop/Notification             status line display
-         |                         keybindings
-         v                         auto-clearing
-  ~/.claude/.notifications/
-    ProjectA__42
-    ProjectB__53
+macOS:
+```bash
+terminal-notifier -title "Claude Code" -subtitle "test-project" -message "Agent has finished" -sound default
 ```
 
-1. This plugin catches Claude Code events and writes notification files
-2. The tmux plugin reads those files and displays them in the status bar
-3. Notifications clear automatically when you focus the agent's pane
+Linux:
+```bash
+notify-send "Claude Code - test-project" "Agent has finished"
+```
 
-## Configuration
+Hook test:
+```bash
+echo '{"cwd":"/tmp/test-project"}' | bash plugins/desktop-notifications/hooks/scripts/claude-hook.sh Stop
+```
 
-Display settings are configured via tmux `@` variables in `~/.tmux.conf` (see the [tmux plugin README](https://github.com/kaiiserni/tmux-agent-notifications)).
+## Notification Log
+
+All notifications are logged to `~/.claude/notifications.log`.
 
 ## Uninstall
 
 ```bash
-claude plugin uninstall tmux-agent-notifications@claude-plugin-tmux-notifications
-claude plugin marketplace remove claude-plugin-tmux-notifications
+claude plugin uninstall desktop-notifications@claude-plugin-desktop-notifications
+claude plugin marketplace remove claude-plugin-desktop-notifications
 ```
 
 ## License
