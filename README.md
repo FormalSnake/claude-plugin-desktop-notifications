@@ -18,10 +18,12 @@ No manual `settings.json` editing required.
 
 ## Installation
 
-Install the Claude Code plugin:
-
 ```bash
-claude plugin add kaiiserni/claude-plugin-tmux-notifications
+# Add the marketplace
+claude plugin marketplace add kaiiserni/claude-plugin-tmux-notifications
+
+# Install the plugin
+claude plugin install tmux-agent-notifications@claude-plugin-tmux-notifications
 ```
 
 Then install the companion tmux plugin for status bar display. Add to `~/.tmux.conf`:
@@ -31,6 +33,8 @@ set -g @plugin 'kaiiserni/tmux-agent-notifications'
 ```
 
 Reload tmux: `prefix + I`
+
+> Restart Claude Code after installing for hooks to activate.
 
 ## How It Works
 
@@ -52,6 +56,13 @@ Claude Code hooks (this plugin)     tmux plugin
 ## Configuration
 
 Display settings are configured via tmux `@` variables in `~/.tmux.conf` (see the [tmux plugin README](https://github.com/kaiiserni/tmux-agent-notifications)).
+
+## Uninstall
+
+```bash
+claude plugin uninstall tmux-agent-notifications@claude-plugin-tmux-notifications
+claude plugin marketplace remove claude-plugin-tmux-notifications
+```
 
 ## License
 

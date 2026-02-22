@@ -6,7 +6,6 @@
     "name": "kaiiserni",
     "url": "https://github.com/kaiiserni"
   },
-  "repository": "https://github.com/kaiiserni/claude-plugin-tmux-notifications",
-  "license": "MIT",
-  "keywords": ["tmux", "notifications", "multi-agent", "status-bar"]
+  "homepage": "https://github.com/kaiiserni/tmux-agent-notifications",
+  "license": "MIT"
 }
